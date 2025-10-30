@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
-
-const Results = ({ prediction, loading }) => {
+const Results = ({ prediction }) => {
   if (!prediction || !prediction.success) {
     return null;
   }
@@ -20,7 +18,7 @@ const Results = ({ prediction, loading }) => {
   };
 
   return (
-     <div className="results-container">
+    <div className="results-container">
       {/* Main Prediction Card */}
       <div className="card prediction-card" style={{ borderColor: risk_color }}>
         <div className="card__body">
@@ -82,33 +80,37 @@ const Results = ({ prediction, loading }) => {
       </div>
 
       {/* Input Summary Card */}
-      <div className="card">
-        <div className="card__body">
-          <h3>Scenario Summary</h3>
-          <div className="summary-grid">
-            <div className="summary-item">
-              <span className="summary-label">Driver Age: </span>
-              <span className="summary-value">{input_summary.driver_age}</span>
-            </div>
-            <div className="summary-item">
-              <span className="summary-label">Experience: </span>
-              <span className="summary-value">{input_summary.experience}</span>
-            </div>
-            <div className="summary-item">
-              <span className="summary-label">Weather: </span>
-              <span className="summary-value">{input_summary.conditions.weather}</span>
-            </div>
-            <div className="summary-item">
-              <span className="summary-label">Light: </span>
-              <span className="summary-value">{input_summary.conditions.light}</span>
-            </div>
-            <div className="summary-item">
-              <span className="summary-label">Road Condition: </span>
-              <span className="summary-value">{input_summary.conditions.road}</span>
-            </div>
-          </div>
-        </div>
+<div className="card">
+  <div className="card__body">
+    <h3>Scenario Summary</h3>
+    <div className="summary-grid">
+      <div className="summary-item">
+        <span className="summary-label">Driver Age: </span>
+        <span className="summary-value">{input_summary.driver_age || "N/A"}</span>
       </div>
+      <div className="summary-item">
+        <span className="summary-label">Experience: </span>
+        <span className="summary-value">{input_summary.experience || "N/A"}</span>
+      </div>
+      <div className="summary-item">
+        <span className="summary-label">Number of Vehicles: </span>
+        <span className="summary-value">{input_summary.num_vehicles || "N/A"}</span>
+      </div>
+      <div className="summary-item">
+        <span className="summary-label">Light: </span>
+        <span className="summary-value">{input_summary.conditions?.light || "N/A"}</span>
+      </div>
+      <div className="summary-item">
+        <span className="summary-label">Casualties: </span>
+        <span className="summary-value">{input_summary.casualties || "N/A"}</span>
+      </div>
+      <div className="summary-item">
+        <span className="summary-label">Cause of Accident: </span>
+        <span className="summary-value">{input_summary.cause || "N/A"}</span>
+      </div>
+    </div>
+  </div>
+</div>
 
       {/* Safety Recommendations */}
       <div className="card recommendations-card">
@@ -139,18 +141,6 @@ const Results = ({ prediction, loading }) => {
           </ul>
         </div>
       </div>
-  
-      {/* ✅ View Detailed Analysis Button */}
-      {prediction && !loading && (
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <Link to="/analysis" state={{ result: prediction }}>
-            <button  className="btn btn--primary btn--lg">
-              🔍 View Detailed Analysis
-            </button>
-          </Link>
-        </div>
-      )}
-
     </div>
   );
 };

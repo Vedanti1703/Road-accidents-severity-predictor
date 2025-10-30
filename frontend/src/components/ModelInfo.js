@@ -6,7 +6,7 @@ const ModelInfo = ({ modelInfo, onClose }) => {
       <div className="card__body">
         <div className="flex justify-between items-center mb-16">
           <h2>🤖 Model Information</h2>
-          <button  className="btn btn--secondary btn--sm close" onClick={onClose}>
+          <button className="btn btn--secondary btn--sm" onClick={onClose}>
             ✕ Close
           </button>
         </div>

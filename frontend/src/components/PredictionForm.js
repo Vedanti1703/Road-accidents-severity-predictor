@@ -56,7 +56,7 @@ const PredictionForm = ({ features, onSubmit, onReset, loading }) => {
         value={formData[featureName] || ''}
         onChange={handleChange}
         required
-        min="1"
+        min="0"
         className="form-control"
         placeholder="Enter number"
       />
